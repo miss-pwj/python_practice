@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block ext_css %}
+<style>
+.bg{
+    background-image: url("/static/img/001.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.tx1{
+    background: rgba(255, 255, 255, 0.04);
+    color: rgb(0, 128, 128);
+}
+</style>
+{% endblock %}
+{% block content %}
+<body class="bg">
+<h1 style="color: teal">编辑微博</h1>
+<hr>
+
+{% if error %}
+<div class="alert alert-danger alert-dismissible" role="alert">
+    <strong>提示：</strong>{{ error }}
+</div>
+{% endif %}
+
+<form class="form-horizontal" action="/weibo/edit" method="POST">
+    <div class="form-group">
+        <div class="col-sm-12">
+            <textarea  class="form-control tx1" name="content" rows="20">{{ weibo.content }}</textarea>
+        </div>
+    </div>
+<!-- 修改微博的时候  要根据id编辑  自己添加id-->
+    <input type="hidden" name="wid" value="{{ weibo.id }}">
+
+    <div class="form-group">
+        <div class="col-sm-offset-11">
+            <button type="submit" class="btn btn-primary">重新发布</button>
+        </div>
+    </div>
+</form>
+
+</body>
+{% endblock %}
